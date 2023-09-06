@@ -1,0 +1,22 @@
+import java.util.Arrays;
+
+class Solution {
+    public int[] solution(int n, long left, long right) {
+        int a = (int)(left / n); // left는 a번째 행
+        int b = (int)(right / n); // right는 b번째 행
+        int[] answer = new int[(b - a + 1) * n];
+        int idx = 0;
+        for (int i = a; i <= b; i++) {
+            for (int k = 0; k <= i; k++) {
+                answer[idx++] = i + 1;
+            }
+            for (int k = i + 1; k < n; k++) {
+                answer[idx++] = k + 1;
+            }
+        }
+        int start = (int)(left % n);
+        int end = (int)(right - left);
+        
+        return Arrays.copyOfRange(answer, start, start + end + 1);
+    }
+}
