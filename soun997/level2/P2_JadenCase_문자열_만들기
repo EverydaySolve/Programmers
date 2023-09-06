@@ -1,0 +1,20 @@
+import java.util.*;
+
+class Solution {
+    public String solution(String s) {
+        StringBuilder result = new StringBuilder();
+        String[] words = s.split("\\s+");
+        String[] spaces = s.split("[A-Za-z0-9]+");
+        int idx = 1;
+        for (String word : words) {
+            String first = word.substring(0, 1).toUpperCase();
+            String other = word.substring(1, word.length()).toLowerCase();
+            result.append(first).append(other);
+            if (idx < spaces.length) {
+                result.append(spaces[idx++]);
+            }
+        }
+        
+        return result.toString();
+    }
+}
