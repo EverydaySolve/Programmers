@@ -1,0 +1,29 @@
+import java.util.*;
+
+class Solution {
+    public int solution(int[] elements) {
+        
+        Set<Integer> sums = new HashSet<>();
+        int windowSize = 1;
+        while (windowSize <= elements.length) {
+            for (int i = 0; i < elements.length; i++) {
+                int sum = getSum(elements, windowSize, i);
+                if (sums.contains(sum)) {
+                    continue;
+                }
+                sums.add(sum);
+            }
+            windowSize++;
+        }
+        
+        return sums.size();
+    }
+    
+    public int getSum(int[] elements, int windowSize, int idx) {
+        int sum = 0;
+        for (int i = idx; i < idx + windowSize; i++) {
+            sum += elements[i % elements.length];
+        }
+        return sum;
+    }
+}
